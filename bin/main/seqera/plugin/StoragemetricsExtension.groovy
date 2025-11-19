@@ -18,20 +18,28 @@ package seqera.plugin
 
 import groovy.transform.CompileStatic
 import nextflow.Session
-import nextflow.trace.TraceObserver
-import nextflow.trace.TraceObserverFactory
+import nextflow.plugin.extension.Function
+import nextflow.plugin.extension.PluginExtensionPoint
 
 /**
- * Implements a factory object required to create
- * the {@link StoragemetricsObserver} instance.
+ * Implements a custom function which can be imported by
+ * Nextflow scripts.
  */
 @CompileStatic
-class StoragemetricsFactory implements TraceObserverFactory {
+class StoragemetricsExtension extends PluginExtensionPoint {
 
     @Override
-    Collection<TraceObserver> create(Session session) {
-        final config = StorageMetricsConfig.fromSession(session)
-        return List.<TraceObserver>of(new StoragemetricsObserver(config))
+    protected void init(Session session) {
+    }
+
+    /**
+     * Say hello to the given target.
+     *
+     * @param target
+     */
+    @Function
+    void sayHello(String target) {
+        println "Hello, ${target}!"
     }
 
 }

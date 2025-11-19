@@ -17,21 +17,16 @@
 package seqera.plugin
 
 import groovy.transform.CompileStatic
-import nextflow.Session
-import nextflow.trace.TraceObserver
-import nextflow.trace.TraceObserverFactory
+import nextflow.plugin.BasePlugin
+import org.pf4j.PluginWrapper
 
 /**
- * Implements a factory object required to create
- * the {@link StoragemetricsObserver} instance.
+ * The plugin entry point
  */
 @CompileStatic
-class StoragemetricsFactory implements TraceObserverFactory {
+class StoragemetricsPlugin extends BasePlugin {
 
-    @Override
-    Collection<TraceObserver> create(Session session) {
-        final config = StorageMetricsConfig.fromSession(session)
-        return List.<TraceObserver>of(new StoragemetricsObserver(config))
+    StoragemetricsPlugin(PluginWrapper wrapper) {
+        super(wrapper)
     }
-
 }
