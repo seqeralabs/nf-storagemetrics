@@ -8,6 +8,7 @@ nextflowPlugin {
     nextflowVersion = '24.10.0'
 
     provider = 'Seqera'
+    description = 'Track storage usage for running Nextflow pipelines'
     className = 'seqera.plugin.StoragemetricsPlugin'
     extensionPoints = [
         'seqera.plugin.StoragemetricsExtension',
